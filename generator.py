@@ -62,8 +62,9 @@ def generate_repo():
         print(f"Packaging {addon_id} v{version} into {zip_name}...")
         with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
             for root_dir, _, files in os.walk(addon_path):
-                # Skip git, cache, and build files
-                if any(x in root_dir for x in [".git", ".antigravitycli", "__pycache__", "repo"]):
+                # Skip git, cache, and build files (checking exact folder names, not substrings)
+                parts = os.path.normpath(root_dir).split(os.sep)
+                if any(x in parts for x in [".git", ".antigravitycli", "__pycache__", "repo"]):
                     continue
                 for file in files:
                     if file.endswith(".zip"):
