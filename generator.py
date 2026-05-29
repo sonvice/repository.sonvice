@@ -92,6 +92,30 @@ def generate_repo():
     with open(addons_xml_path + ".md5", "w") as f:
         f.write(md5.hexdigest())
         
+    # Delete old zips in root to avoid version accumulation
+    for file in os.listdir(REPO_DIR):
+        if file.endswith(".zip"):
+            try:
+                os.remove(os.path.join(REPO_DIR, file))
+            except Exception:
+                pass
+        
+    # Copy zips to root for flat File Manager index
+    for addon in ADDONS:
+        addon_id = addon["id"]
+        addon_path = addon["path"]
+        if not os.path.exists(addon_path):
+            continue
+        xml_path = os.path.join(addon_path, "addon.xml")
+        tree = ET.parse(xml_path)
+        root = tree.getroot()
+        version = root.attrib["version"]
+        
+        src_zip = os.path.join(OUTPUT_DIR, addon_id, f"{addon_id}-{version}.zip")
+        dest_zip = os.path.join(REPO_DIR, f"{addon_id}-{version}.zip")
+        if os.path.exists(src_zip):
+            shutil.copy(src_zip, dest_zip)
+        
     # Write index.html for Kodi File Manager Add Source
     index_path = os.path.join(REPO_DIR, "index.html")
     html_content = """<!DOCTYPE html>
@@ -123,8 +147,8 @@ def generate_repo():
         tree = ET.parse(xml_path)
         root = tree.getroot()
         version = root.attrib["version"]
-        zip_abs_path = f"https://raw.githubusercontent.com/sonvice/repository.sonvice/main/repo/{addon_id}/{addon_id}-{version}.zip"
-        html_content += f'        <li><a href="{zip_abs_path}">{addon_id}-{version}.zip</a></li>\n'
+        zip_rel_path = f"{addon_id}-{version}.zip"
+        html_content += f'        <li><a href="{zip_rel_path}">{addon_id}-{version}.zip</a></li>\n'
         
     html_content += """    </ul>
 </body>
@@ -132,7 +156,7 @@ def generate_repo():
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(html_content)
         
-    print("Repository generation complete with index.html!")
+    print("Repository generation complete with flat index.html!")
 
 if __name__ == "__main__":
     generate_repo()
