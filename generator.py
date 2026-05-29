@@ -123,8 +123,8 @@ def generate_repo():
         tree = ET.parse(xml_path)
         root = tree.getroot()
         version = root.attrib["version"]
-        zip_rel_path = f"repo/{addon_id}/{addon_id}-{version}.zip"
-        html_content += f'        <li><a href="{zip_rel_path}">{addon_id} v{version} (ZIP)</a></li>\n'
+        zip_abs_path = f"https://raw.githubusercontent.com/sonvice/repository.sonvice/main/repo/{addon_id}/{addon_id}-{version}.zip"
+        html_content += f'        <li><a href="{zip_abs_path}">{addon_id}-{version}.zip</a></li>\n'
         
     html_content += """    </ul>
 </body>
