@@ -92,7 +92,47 @@ def generate_repo():
     with open(addons_xml_path + ".md5", "w") as f:
         f.write(md5.hexdigest())
         
-    print("Repository generation complete!")
+    # Write index.html for Kodi File Manager Add Source
+    index_path = os.path.join(REPO_DIR, "index.html")
+    html_content = """<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sonvice Kodi Repository</title>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: #ffffff; padding: 40px 20px; text-align: center; }
+        h1 { color: #00bcd4; margin-bottom: 5px; }
+        p { color: #888; font-size: 1.1em; margin-bottom: 30px; }
+        ul { list-style: none; padding: 0; max-width: 500px; margin: 0 auto; }
+        li { margin: 20px 0; background: #1e1e1e; padding: 15px; border-radius: 8px; border: 1px solid #333; }
+        a { color: #e91e63; text-decoration: none; font-size: 1.2em; font-weight: bold; }
+        a:hover { color: #ff4081; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Sonvice Kodi Repository</h1>
+    <p>Añade esta URL en el Gestor de Archivos de Kodi para instalar los addons:</p>
+    <ul>
+"""
+    for addon in ADDONS:
+        addon_id = addon["id"]
+        addon_path = addon["path"]
+        if not os.path.exists(addon_path):
+            continue
+        xml_path = os.path.join(addon_path, "addon.xml")
+        tree = ET.parse(xml_path)
+        root = tree.getroot()
+        version = root.attrib["version"]
+        zip_rel_path = f"repo/{addon_id}/{addon_id}-{version}.zip"
+        html_content += f'        <li><a href="{zip_rel_path}">{addon_id} v{version} (ZIP)</a></li>\n'
+        
+    html_content += """    </ul>
+</body>
+</html>"""
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write(html_content)
+        
+    print("Repository generation complete with index.html!")
 
 if __name__ == "__main__":
     generate_repo()
