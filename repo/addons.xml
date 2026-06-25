@@ -64,7 +64,7 @@
         
 
     </addon>
-    <addon id="repository.sonvice" name="Sonvice Repository" version="1.0.8" provider-name="sonvice">
+    <addon id="repository.sonvice" name="Sonvice Repository" version="1.0.9" provider-name="sonvice">
         
     
         <requires>
@@ -115,13 +115,13 @@
             <dir>
                 
             
-                <info compressed="false">https://cdn.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml</info>
+                <info compressed="false">https://cdn.statically.io/gh/sonvice/repository.sonvice@main/repo/addons.xml</info>
                 
             
-                <checksum>https://cdn.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml.md5</checksum>
+                <checksum>https://cdn.statically.io/gh/sonvice/repository.sonvice@main/repo/addons.xml.md5</checksum>
                 
             
-                <datadir zip="true">https://cdn.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/</datadir>
+                <datadir zip="true">https://cdn.statically.io/gh/sonvice/repository.sonvice@main/repo/</datadir>
                 
         
             </dir>
