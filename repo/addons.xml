@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <addons>
-    <addon id="plugin.video.stremio4kodi" name="Stremio for Kodi" version="3.2.7" provider-name="stremio4kodi">
+    <addon id="plugin.video.stremio4kodi" name="Stremio for Kodi" version="3.2.8" provider-name="stremio4kodi">
         
     
         <requires>
@@ -64,7 +64,7 @@
         
 
     </addon>
-    <addon id="repository.sonvice" name="Sonvice Repository" version="1.0.4" provider-name="sonvice">
+    <addon id="repository.sonvice" name="Sonvice Repository" version="1.0.5" provider-name="sonvice">
         
     
         <requires>
