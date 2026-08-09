@@ -16,9 +16,9 @@
     </extension>
     <extension point="xbmc.addon.repository" name="Sonvice Repository">
         <dir>
-            <info compressed="false">https://cdn.statically.io/gh/sonvice/repository.sonvice@main/repo/addons.xml</info>
-            <checksum>https://cdn.statically.io/gh/sonvice/repository.sonvice@main/repo/addons.xml.md5</checksum>
-            <datadir zip="true">https://cdn.statically.io/gh/sonvice/repository.sonvice@main/repo/</datadir>
+            <info compressed="false">https://cdn.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml</info>
+            <checksum>https://cdn.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml.md5</checksum>
+            <datadir zip="true">https://cdn.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/</datadir>
         </dir>
     </extension>
 </addon>

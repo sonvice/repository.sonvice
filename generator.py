@@ -67,7 +67,7 @@ def generate_repo():
                 if any(x in parts for x in [".git", ".antigravitycli", "__pycache__", "repo"]):
                     continue
                 for file in files:
-                    if file.endswith(".zip"):
+                    if file.endswith(".zip") or file.endswith(".pdf"):
                         continue
                     full_path = os.path.join(root_dir, file)
                     rel_path = os.path.relpath(full_path, os.path.dirname(addon_path))
