@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <addons>
-    <addon id="plugin.video.stremio4kodi" name="Stremio for Kodi" version="3.5.4" provider-name="stremio4kodi">
+    <addon id="plugin.video.stremio4kodi" name="Stremio for Kodi" version="3.5.5" provider-name="stremio4kodi">
         
     
         <requires>
