@@ -6,3 +6,8 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Local device context & private settings (DO NOT COMMIT)
+.coreelec_context.md
+COREELEC_SETUP.local.md
+
