@@ -8,6 +8,7 @@ import shutil
 REPO_DIR = os.path.dirname(os.path.abspath(__file__))
 ADDONS = [
     {"id": "plugin.video.stremio4kodi", "path": os.path.join(REPO_DIR, "..", "plugin.video.stremio4kodi")},
+    {"id": "script.program.vpncontrol", "path": os.path.join(REPO_DIR, "..", "script.program.vpncontrol")},
     {"id": "repository.sonvice", "path": os.path.join(REPO_DIR, "repository.sonvice")}
 ]
 OUTPUT_DIR = os.path.join(REPO_DIR, "repo")
