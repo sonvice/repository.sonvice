@@ -9,7 +9,8 @@ REPO_DIR = os.path.dirname(os.path.abspath(__file__))
 ADDONS = [
     {"id": "plugin.video.stremio4kodi", "path": os.path.join(REPO_DIR, "..", "plugin.video.stremio4kodi")},
     {"id": "script.program.vpncontrol", "path": os.path.join(REPO_DIR, "..", "script.program.vpncontrol")},
-    {"id": "repository.sonvice", "path": os.path.join(REPO_DIR, "repository.sonvice")}
+    {"id": "repository.sonvice", "path": os.path.join(REPO_DIR, "repository.sonvice")},
+    {"id": "service.subtitles.opensubtitles-stremio", "path": os.path.join(REPO_DIR, "..", "service.subtitles.opensubtitles-stremio")}
 ]
 OUTPUT_DIR = os.path.join(REPO_DIR, "repo")
 
