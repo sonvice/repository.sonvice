@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <addons>
-    <addon id="plugin.video.stremio4kodi" name="Stremio for Kodi" version="3.7.6" provider-name="stremio4kodi">
+    <addon id="plugin.video.stremio4kodi" name="Stremio for Kodi" version="3.7.7" provider-name="stremio4kodi">
         
     
         <requires>
@@ -67,7 +67,7 @@
         
 
     </addon>
-    <addon id="script.program.vpncontrol" name="Control VPN (CoreELEC)" version="1.0.0" provider-name="Wilson">
+    <addon id="script.program.vpncontrol" name="Control VPN (CoreELEC)" version="1.0.1" provider-name="Wilson">
         
     
         <requires>
