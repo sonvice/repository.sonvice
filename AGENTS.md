@@ -53,5 +53,5 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.15)
-* **`plugin.video.stremio4kodi` (v3.7.15):** Optimización total de latencia y UX: renderizado instantáneo del menú principal AceStream sin bloqueos síncronos de red por descarga de IPFS. Apertura inmediata del diálogo de progreso P2P al pulsar canal (`DialogProgress`) y sustitución de `time.sleep` por `xbmc.sleep` para mantener la fluidez de Kodi a 60 FPS. DNS pre-resuelto y queries paralelas optimizadas en `acestream_search.py` para cargar tendencias en <1s. Mantiene soporte remoto AceStream host, DoH y reconexión en vivo.
+## 4. Estado Actual de Versiones y Motores (v3.7.16)
+* **`plugin.video.stremio4kodi` (v3.7.16):** Corrección crítica del error `TypeError: function takes at most 2 arguments` en la API Python 3 de Kodi para `DialogProgress.create` y `DialogProgress.update`. Renderizado instantáneo del menú principal AceStream, diálogo de progreso P2P inmediato con `xbmc.sleep`, soporte de host remoto para PC (`acestream_host`), DoH y reconexión en vivo.
