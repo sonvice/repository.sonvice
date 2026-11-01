@@ -53,5 +53,5 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.12)
-* **`plugin.video.stremio4kodi` (v3.7.12):** Incluye soporte nativo para streaming mediante TorrServer MatriX en RAM, modo de selección "Auto" con failover transparente a Elementum si el PC está en reposo o apagado (≤600ms), auto-heal de Elementum mediante reinicio por JSON-RPC, y resolución directa a `xbmc.Player().play()` con metadatos de subtítulos y puntos de reanudación.
+## 4. Estado Actual de Versiones y Motores (v3.7.13)
+* **`plugin.video.stremio4kodi` (v3.7.13):** Incorpora el módulo híbrido `acestream_search.py` para la obtención de tendencias de fútbol y deportes en directo en tiempo real desde `acestreamid.com` (con métricas de reputación comunitaria y fecha activa) y `search-ace.stream` (vía API REST JSON con bypass DoH contra bloqueos de operadoras). Añade buscador interactivo de canales/eventos y accesos directos en el menú principal de AceStream. Mantiene soporte nativo TorrServer MatriX en RAM con failover a Elementum.
