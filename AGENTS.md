@@ -53,5 +53,5 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.18)
-* **`plugin.video.stremio4kodi` (v3.7.18):** Corrección total de `setResolvedUrl` para suprimir para siempre el diálogo falso de 'Failed to play'. Eliminación de `inputstream.ffmpegdirect` para evitar pantallas negras y bloqueos al salir. Retorno al motor AceStream local simple (`127.0.0.1:6878`) en CoreELEC. Submenú IPFS aislado para apertura instantánea en <10 ms.
+## 4. Estado Actual de Versiones y Motores (v3.7.19)
+* **`plugin.video.stremio4kodi` (v3.7.19):** Silenciamiento de notificaciones en navegación de listas cacheadas (tendencias y búsquedas). Corrección total de `setResolvedUrl` para suprimir para siempre el diálogo falso de 'Failed to play'. Eliminación de `inputstream.ffmpegdirect` para evitar pantallas negras y bloqueos al salir. Retorno al motor AceStream local simple (`127.0.0.1:6878`) en CoreELEC. Submenú IPFS aislado para apertura instantánea en <10 ms.
