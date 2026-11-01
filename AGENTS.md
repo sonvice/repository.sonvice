@@ -53,5 +53,5 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.14)
-* **`plugin.video.stremio4kodi` (v3.7.14):** Optimización integral de reproducción AceStream. Elimina el diálogo erróneo 'One or more items failed to play' mediante resolución exitosa de directorio (`succeeded=True`). Añade configuración de Host/IP para offload remoto a PC (`acestream_host`), soporte de reconexión automática en vivo con `inputstream.ffmpegdirect` y propiedad `IsLive=true`. Elimina la saturación del motor por sondeo masivo en segundo plano permitiendo conexión instantánea a peers desde el primer intento. Mantiene soporte dual `acestreamid.com` y `search-ace.stream` con DoH.
+## 4. Estado Actual de Versiones y Motores (v3.7.15)
+* **`plugin.video.stremio4kodi` (v3.7.15):** Optimización total de latencia y UX: renderizado instantáneo del menú principal AceStream sin bloqueos síncronos de red por descarga de IPFS. Apertura inmediata del diálogo de progreso P2P al pulsar canal (`DialogProgress`) y sustitución de `time.sleep` por `xbmc.sleep` para mantener la fluidez de Kodi a 60 FPS. DNS pre-resuelto y queries paralelas optimizadas en `acestream_search.py` para cargar tendencias en <1s. Mantiene soporte remoto AceStream host, DoH y reconexión en vivo.
