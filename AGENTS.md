@@ -53,5 +53,5 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.13)
-* **`plugin.video.stremio4kodi` (v3.7.13):** Incorpora el módulo híbrido `acestream_search.py` para la obtención de tendencias de fútbol y deportes en directo en tiempo real desde `acestreamid.com` (con métricas de reputación comunitaria y fecha activa) y `search-ace.stream` (vía API REST JSON con bypass DoH contra bloqueos de operadoras). Añade buscador interactivo de canales/eventos y accesos directos en el menú principal de AceStream. Mantiene soporte nativo TorrServer MatriX en RAM con failover a Elementum.
+## 4. Estado Actual de Versiones y Motores (v3.7.14)
+* **`plugin.video.stremio4kodi` (v3.7.14):** Optimización integral de reproducción AceStream. Elimina el diálogo erróneo 'One or more items failed to play' mediante resolución exitosa de directorio (`succeeded=True`). Añade configuración de Host/IP para offload remoto a PC (`acestream_host`), soporte de reconexión automática en vivo con `inputstream.ffmpegdirect` y propiedad `IsLive=true`. Elimina la saturación del motor por sondeo masivo en segundo plano permitiendo conexión instantánea a peers desde el primer intento. Mantiene soporte dual `acestreamid.com` y `search-ace.stream` con DoH.
