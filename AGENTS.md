@@ -53,5 +53,5 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.17)
-* **`plugin.video.stremio4kodi` (v3.7.17):** Aislamiento de la lista tradicional IPFS/M3U en submenú dedicado al final (`acestream_traditional`) para evitar cargas pesadas en la entrada. Apertura instantánea de tendencias deportivas y búsqueda AceStream. Corrección total de `DialogProgress` (máximo 2 argumentos en Kodi 21 Python 3), offload de motor P2P a PC (`acestream_host`), DoH anti-bloqueo y reconexión en vivo.
+## 4. Estado Actual de Versiones y Motores (v3.7.18)
+* **`plugin.video.stremio4kodi` (v3.7.18):** Corrección total de `setResolvedUrl` para suprimir para siempre el diálogo falso de 'Failed to play'. Eliminación de `inputstream.ffmpegdirect` para evitar pantallas negras y bloqueos al salir. Retorno al motor AceStream local simple (`127.0.0.1:6878`) en CoreELEC. Submenú IPFS aislado para apertura instantánea en <10 ms.
