@@ -8,10 +8,10 @@ import shutil
 REPO_DIR = os.path.dirname(os.path.abspath(__file__))
 ADDONS = [
     {"id": "plugin.video.stremio4kodi", "path": os.path.join(REPO_DIR, "..", "plugin.video.stremio4kodi")},
-    {"id": "script.program.vpncontrol", "path": os.path.join(REPO_DIR, "..", "script.program.vpncontrol")},
     {"id": "repository.sonvice", "path": os.path.join(REPO_DIR, "repository.sonvice")},
     {"id": "service.subtitles.opensubtitles-stremio", "path": os.path.join(REPO_DIR, "..", "service.subtitles.opensubtitles-stremio")}
 ]
+ROOT_EXPORTS = ["repository.sonvice", "plugin.video.stremio4kodi"]
 OUTPUT_DIR = os.path.join(REPO_DIR, "repo")
 
 def generate_repo():
@@ -102,9 +102,19 @@ def generate_repo():
             except Exception:
                 pass
         
-    # Copy zips to root for flat File Manager index
+    # Clean up obsolete addon directories in repo/ (e.g. removed addons)
+    active_ids = {addon["id"] for addon in ADDONS}
+    for item in os.listdir(OUTPUT_DIR):
+        item_path = os.path.join(OUTPUT_DIR, item)
+        if os.path.isdir(item_path) and item not in active_ids:
+            print(f"Removing obsolete repo directory: {item}")
+            shutil.rmtree(item_path)
+
+    # Copy only primary installer zips to root for flat File Manager index
     for addon in ADDONS:
         addon_id = addon["id"]
+        if addon_id not in ROOT_EXPORTS:
+            continue
         addon_path = addon["path"]
         if not os.path.exists(addon_path):
             continue
@@ -137,11 +147,13 @@ def generate_repo():
 </head>
 <body>
     <h1>Sonvice Kodi Repository</h1>
-    <p>Añade esta URL en el Gestor de Archivos de Kodi para instalar los addons:</p>
+    <p>Añade esta URL en el Gestor de Archivos de Kodi para instalar el repositorio:</p>
     <ul>
 """
     for addon in ADDONS:
         addon_id = addon["id"]
+        if addon_id not in ROOT_EXPORTS:
+            continue
         addon_path = addon["path"]
         if not os.path.exists(addon_path):
             continue
