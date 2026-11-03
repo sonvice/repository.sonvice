@@ -53,5 +53,5 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.19)
-* **`plugin.video.stremio4kodi` (v3.7.19):** Silenciamiento de notificaciones en navegación de listas cacheadas (tendencias y búsquedas). Corrección total de `setResolvedUrl` para suprimir para siempre el diálogo falso de 'Failed to play'. Eliminación de `inputstream.ffmpegdirect` para evitar pantallas negras y bloqueos al salir. Retorno al motor AceStream local simple (`127.0.0.1:6878`) en CoreELEC. Submenú IPFS aislado para apertura instantánea en <10 ms.
+## 4. Estado Actual de Versiones y Motores (v3.7.28)
+* **`plugin.video.stremio4kodi` (v3.7.28):** Instalación automática y reparación integral de Elementum en Android y todas las plataformas. Inyección de shims puros de `kodi_six` y `requests` para evitar errores de arranque por dependencias no resueltas. Supresión definitiva del aviso de autenticación de servidor web en Kodi mediante configuración protegida. Asignación directa de arquitectura de binario y limpieza de bloqueos residuales.
