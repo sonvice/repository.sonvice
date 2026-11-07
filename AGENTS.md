@@ -53,5 +53,5 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.29)
-* **`plugin.video.stremio4kodi` (v3.7.29):** Integración de Comet como fuente Stremio por defecto (`https://cometa.stremx.net`) con normalización automática de metadatos. Implementación del motor RTN (Release Torrent Normalizer) para clasificar y etiquetar en Kodi con colores la resolución (4K/1080p), HDR/DV, fuente (Remux/BluRay/WEB-DL), códecs de vídeo (HEVC/AVC) y audio (Atmos/DTS-HD/5.1), e idiomas destacados ([Castellano], [Latino], [Dual Audio], [VOSE], [V.O.]). Ordenación inteligente con puntuación de calidad y penalización anti-CAM.
+## 4. Estado Actual de Versiones y Motores (v3.7.30)
+* **`plugin.video.stremio4kodi` (v3.7.30):** Agenda Deportiva del Día con directos en tiempo real y retransmisiones televisadas oficiales (Fútbol, Baloncesto/NBA, Motor F1/MotoGP, Tenis/Pádel). Enriquecimiento en directo de canales AceStream según el evento en emisión. Eliminación de cuadritos rotos (tofu boxes) reemplazando todos los emojis Unicode por iconos nativos de Kodi y etiquetas limpias en streams, títulos y subtítulos. Motor RTN e integración de Comet por defecto.
