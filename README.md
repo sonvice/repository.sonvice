@@ -5,6 +5,7 @@
 [![Kodi Versions](https://img.shields.io/badge/Kodi-19%20|%2020%20|%2021%20(Matrix%20/%20Nexus%20/%20Omega)-blue.svg)](https://kodi.tv)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Latest Version](https://img.shields.io/badge/Repository-v1.0.10-success.svg)](https://github.com/sonvice/repository.sonvice/releases)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Development-F16061?logo=ko-fi&logoColor=white)](https://ko-fi.com/sonvice)
 
 **Official Kodi repository for Sonvice addons.**  
 Install, manage, and automatically receive updates for high-performance Kodi addons including **Stremio for Kodi** across all platforms (Android, CoreELEC, Linux, Windows, macOS).
@@ -111,6 +112,14 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
 
 ---
 
+### ☕ Support Development
+
+If you find this repository and its add-ons useful, consider supporting its ongoing development and maintenance:
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/sonvice)
+
+---
+
 <a name="-español"></a>
 ## 🇪🇸 Español
 
@@ -202,6 +211,14 @@ git push origin main
 curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml"
 curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml.md5"
 ```
+
+---
+
+### ☕ Apoyar el Desarrollo
+
+Si este repositorio y sus complementos te resultan útiles, puedes apoyar su mantenimiento y desarrollo continuo invitándome a un café:
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/sonvice)
 
 ---
 
