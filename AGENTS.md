@@ -53,5 +53,5 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.30)
-* **`plugin.video.stremio4kodi` (v3.7.30):** Agenda Deportiva del Día con directos en tiempo real y retransmisiones televisadas oficiales (Fútbol, Baloncesto/NBA, Motor F1/MotoGP, Tenis/Pádel). Enriquecimiento en directo de canales AceStream según el evento en emisión. Eliminación de cuadritos rotos (tofu boxes) reemplazando todos los emojis Unicode por iconos nativos de Kodi y etiquetas limpias en streams, títulos y subtítulos. Motor RTN e integración de Comet por defecto.
+## 4. Estado Actual de Versiones y Motores (v3.7.31)
+* **`plugin.video.stremio4kodi` (v3.7.31):** Soporte Multi-Debrid completo (Real-Debrid, AllDebrid, Premiumize, TorBox, Debrid-Link) con comprobación de caché instantánea y badges específicos (`[RD+]`, `[AD+]`, `[PM+]`, `[TB+]`, `[DL+]`). Soporte completo para URLs de manifiesto personalizadas de Comet/Torrentio con debrids y filtros privados. Reorganización de los Ajustes en 8 categorías lógicas y sección avanzada. Agenda Deportiva del Día y motor RTN.
