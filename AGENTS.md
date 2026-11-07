@@ -53,5 +53,5 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.28)
-* **`plugin.video.stremio4kodi` (v3.7.28):** Instalación automática y reparación integral de Elementum en Android y todas las plataformas. Inyección de shims puros de `kodi_six` y `requests` para evitar errores de arranque por dependencias no resueltas. Supresión definitiva del aviso de autenticación de servidor web en Kodi mediante configuración protegida. Asignación directa de arquitectura de binario y limpieza de bloqueos residuales.
+## 4. Estado Actual de Versiones y Motores (v3.7.29)
+* **`plugin.video.stremio4kodi` (v3.7.29):** Integración de Comet como fuente Stremio por defecto (`https://cometa.stremx.net`) con normalización automática de metadatos. Implementación del motor RTN (Release Torrent Normalizer) para clasificar y etiquetar en Kodi con colores la resolución (4K/1080p), HDR/DV, fuente (Remux/BluRay/WEB-DL), códecs de vídeo (HEVC/AVC) y audio (Atmos/DTS-HD/5.1), e idiomas destacados ([Castellano], [Latino], [Dual Audio], [VOSE], [V.O.]). Ordenación inteligente con puntuación de calidad y penalización anti-CAM.
