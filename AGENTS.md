@@ -46,6 +46,6 @@ Cualquier cambio en la versión del repositorio o de los addons se sincronizará
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.32)
-* **`plugin.video.stremio4kodi` (v3.7.32):** Solución crítica al bloqueo del búfer al 0.00% (0 B / 0 B) con 0 kB/s en Elementum: auto-configuración de almacenamiento temporal en disco para evitar deadlocks de asignación en RAM, auto-limpieza de temporales al detener la reproducción, protección contra pausas prematuras en el servicio y conmutación automática fluida hacia TorrServer (`127.0.0.1:8090`).
+## 4. Estado Actual de Versiones y Motores (v3.7.33)
+* **`plugin.video.stremio4kodi` (v3.7.33):** TorrServer restablecido como motor prioritario por defecto (`torrent_engine` = `TorrServer`) para reproducción instantánea en RAM ideal para TV Boxes/Android TV; sonda ultrarrápida (<0.8s) y fallback inmediato (<1s) hacia Elementum si TorrServer no está activo.
 * **`repository.sonvice` (v1.0.11):** Migración del repositorio a GitHub Pages (`https://sonvice.github.io/repository.sonvice/repo/`) con CDN Fastly global para eludir bloqueos de ISPs y resolver el error 403 Forbidden de jsDelivr.
