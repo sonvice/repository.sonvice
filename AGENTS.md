@@ -15,21 +15,15 @@ El directorio contiene los archivos necesarios para indexar, empaquetar y distri
 
 ---
 
-## 2. CDN Mirrors (jsDelivr)
+## 2. CDN & Distribución (GitHub Pages + Fastly)
 
-Para evitar bloqueos impuestos por ISPs (operadoras de internet) al dominio `raw.githubusercontent.com`, el archivo `addon.xml` del propio repositorio (`repository.sonvice/repository.sonvice/addon.xml`) apunta a la red de distribución jsDelivr:
+Para evitar bloqueos impuestos por ISPs (operadoras de internet) al dominio `raw.githubusercontent.com` y evitar los límites de cuota/403 de jsDelivr, el archivo `addon.xml` del propio repositorio (`repository.sonvice/repository.sonvice/addon.xml`) apunta a GitHub Pages con CDN global Fastly:
 
-* Info: `https://cdn.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml`
-* Checksum: `https://cdn.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml.md5`
-* Datadir: `https://cdn.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/`
+* Info: `https://sonvice.github.io/repository.sonvice/repo/addons.xml`
+* Checksum: `https://sonvice.github.io/repository.sonvice/repo/addons.xml.md5`
+* Datadir: `https://sonvice.github.io/repository.sonvice/repo/`
 
-Cualquier cambio en la versión del repositorio o de los addons se sincronizará automáticamente a través de este CDN gratis una vez que se haga `git push` a la rama `main` en GitHub.
-
-Para evitar retrasos por la caché del CDN al lanzar una actualización importante, se debe purgar inmediatamente la caché con:
-```bash
-curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml"
-curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml.md5"
-```
+Cualquier cambio en la versión del repositorio o de los addons se sincronizará automáticamente a través de este CDN una vez que se haga `git push` a la rama `main` en GitHub.
 
 ---
 
@@ -49,9 +43,9 @@ curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addo
      git commit -m "Publish vX.Y.Z: <resumen de cambios>"
      git push origin main
      ```
-   - Purga la caché de jsDelivr con los dos comandos `curl` indicados arriba.
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.31)
-* **`plugin.video.stremio4kodi` (v3.7.31):** Soporte Multi-Debrid completo (Real-Debrid, AllDebrid, Premiumize, TorBox, Debrid-Link) con comprobación de caché instantánea y badges específicos (`[RD+]`, `[AD+]`, `[PM+]`, `[TB+]`, `[DL+]`). Soporte completo para URLs de manifiesto personalizadas de Comet/Torrentio con debrids y filtros privados. Reorganización de los Ajustes en 8 categorías lógicas y sección avanzada. Agenda Deportiva del Día y motor RTN.
+## 4. Estado Actual de Versiones y Motores (v3.7.32)
+* **`plugin.video.stremio4kodi` (v3.7.32):** Solución crítica al bloqueo del búfer al 0.00% (0 B / 0 B) con 0 kB/s en Elementum: auto-configuración de almacenamiento temporal en disco para evitar deadlocks de asignación en RAM, auto-limpieza de temporales al detener la reproducción, protección contra pausas prematuras en el servicio y conmutación automática fluida hacia TorrServer (`127.0.0.1:8090`).
+* **`repository.sonvice` (v1.0.11):** Migración del repositorio a GitHub Pages (`https://sonvice.github.io/repository.sonvice/repo/`) con CDN Fastly global para eludir bloqueos de ISPs y resolver el error 403 Forbidden de jsDelivr.
