@@ -69,7 +69,25 @@ Cualquier cambio en la versión del repositorio o de los addons se sincronizará
 
 ---
 
-## 5. Estado Actual de Versiones y Motores (v4.1.0)
-* **`plugin.video.stremio4kodi` (v4.1.0):** MediaCore + Configuración Móvil vía QR + Home Moderna + Widgets Kodi. Supresión definitiva de "Catálogos Stremio" por "Plataformas de Streaming" y "Colecciones y Sagas".
-* **`repository.sonvice` (v1.0.11):** Repositorio en GitHub Pages con soporte multi-versión (`v4.1.0` última, `v4.0.0` MediaCore, `v3.7.33` Legacy).
-* **`repository.sonvice` (v1.0.11):** Migración del repositorio a GitHub Pages (`https://sonvice.github.io/repository.sonvice/repo/`) con CDN Fastly global para eludir bloqueos de ISPs y resolver el error 403 Forbidden de jsDelivr.
+## 5. Política Estricta de Versiones (Dual-Version Retention: v4.x y v3.x)
+
+El repositorio mantiene intencionadamente **únicamente dos versiones** de `plugin.video.stremio4kodi`:
+1. **Última Versión Estable (`v4.1.0+`):** MediaCore + Configuración Móvil vía QR + Home Moderna + Widgets Kodi.
+2. **Versión Antigua / Clásica (`v3.7.33`):** Versión monolítica legacy ligera para usuarios con dispositivos muy antiguos o que prefieran la interfaz tradicional de menús Stremio directos.
+
+> [!WARNING]
+> **No acumular versiones intermedias (ej. `v4.0.0`):** `generator.py` limpia automáticamente los ZIPs obsoletos de la raíz y del flat index `index.html`. Los usuarios únicamente deben poder elegir entre la versión más reciente y la última versión clásica de la rama v3.
+
+---
+
+## 6. Arquitectura de Distribución y Gestor de Archivos (index.html)
+
+### 6.1. Prioridad Absoluta del Repositorio en `index.html`
+Al agregar la URL de GitHub Pages en el Gestor de Archivos de Kodi (`https://sonvice.github.io/repository.sonvice/`), la página [`index.html`](file:///home/wilson/Pictures/plugin.video.stremio4kodi_v3.2.3/repository.sonvice/index.html) lista en **primer lugar** el archivo `repository.sonvice-X.X.X.zip` etiquetado como `Repositorio (Recomendado)`.
+
+* **Motivo técnico crítico:** El motor VFS de Kodi (`zip://https://...`) **no es un gestor de descargas**. Si un usuario intenta instalar un addon pesado (>50 archivos) directamente desde un enlace ZIP remoto en "Instalar desde un archivo .zip", Kodi abre peticiones Range HTTP separadas para cada archivo y directorio, saturando el socket y arrojando el error `Failed to unpack archive`.
+* **Flujo correcto:** El usuario instala primero el repositorio (`repository.sonvice-X.X.X.zip`, 2 ficheros, 0.5s) y luego instala el addon desde el repositorio oficial de Kodi, lo cual descarga el archivo completo a `special://home/addons/packages/` y lo extrae localmente a máxima velocidad, habilitando además las actualizaciones automáticas.
+
+### 6.2. Reglas del Empaquetador (`generator.py`)
+* **Entradas de Directorio Explícitas:** El empaquetador genera entradas `ZipInfo` con barra final (`dir/`) para cada subcarpeta, asegurando que el unzipper de Kodi reconozca la estructura de directorios en disco.
+* **Exclusión de Archivos Innecesarios:** Se descartan de los paquetes finales las carpetas `.git`, `.github`, `.antigravitycli`, `__pycache__`, y archivos de desarrollo como `.gitignore`, `*.md` (`README.md`, `AGENTS.md`) y `.pdf`.
