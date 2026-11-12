@@ -7,18 +7,23 @@
         body { font-family: sans-serif; background: #121212; color: #ffffff; padding: 40px 20px; text-align: center; }
         h1 { color: #00bcd4; margin-bottom: 5px; }
         p { color: #888; font-size: 1.1em; margin-bottom: 30px; }
-        ul { list-style: none; padding: 0; max-width: 500px; margin: 0 auto; }
-        li { margin: 20px 0; background: #1e1e1e; padding: 15px; border-radius: 8px; border: 1px solid #333; }
-        a { color: #e91e63; text-decoration: none; font-size: 1.2em; font-weight: bold; }
+        ul { list-style: none; padding: 0; max-width: 600px; margin: 0 auto; text-align: left; }
+        li { margin: 15px 0; background: #1e1e1e; padding: 15px 20px; border-radius: 8px; border: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+        a { color: #e91e63; text-decoration: none; font-size: 1.1em; font-weight: bold; }
         a:hover { color: #ff4081; text-decoration: underline; }
+        .tag { font-size: 0.85em; padding: 3px 8px; border-radius: 4px; font-weight: normal; }
+        .tag-latest { background: #00e676; color: #000; }
+        .tag-legacy { background: #ffa000; color: #000; }
+        .tag-repo { background: #00bcd4; color: #000; }
     </style>
 </head>
 <body>
     <h1>Sonvice Kodi Repository</h1>
-    <p>Añade esta URL en el Gestor de Archivos de Kodi para instalar el repositorio:</p>
+    <p>Añade esta URL en el Gestor de Archivos de Kodi para instalar el repositorio o descargar los complementos:</p>
     <ul>
-        <li><a href="plugin.video.stremio4kodi-4.0.0.zip">plugin.video.stremio4kodi-4.0.0.zip</a></li>
-        <li><a href="repository.sonvice-1.0.11.zip">repository.sonvice-1.0.11.zip</a></li>
+        <li><a href="plugin.video.stremio4kodi-4.0.0.zip">plugin.video.stremio4kodi-4.0.0.zip</a><span class="tag tag-latest">v4.0.0 (Última)</span></li>
+        <li><a href="repository.sonvice-1.0.11.zip">repository.sonvice-1.0.11.zip</a><span class="tag tag-repo">Repositorio</span></li>
+        <li><a href="plugin.video.stremio4kodi-3.7.33.zip">plugin.video.stremio4kodi-3.7.33.zip</a><span class="tag tag-legacy">v3.7.33 (Legacy Estable)</span></li>
     </ul>
 </body>
 </html>
