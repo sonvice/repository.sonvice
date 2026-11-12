@@ -46,6 +46,6 @@ Cualquier cambio en la versión del repositorio o de los addons se sincronizará
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v3.7.33)
-* **`plugin.video.stremio4kodi` (v3.7.33):** TorrServer restablecido como motor prioritario por defecto (`torrent_engine` = `TorrServer`) para reproducción instantánea en RAM ideal para TV Boxes/Android TV; sonda ultrarrápida (<0.8s) y fallback inmediato (<1s) hacia Elementum si TorrServer no está activo.
+## 4. Estado Actual de Versiones y Motores (v4.0.0)
+* **`plugin.video.stremio4kodi` (v4.0.0):** MediaCore — Nueva arquitectura modular inspirada en HolyArrs ("One UI, One Media Core"). Desacoplamiento en hubs independientes: Playback Hub (TorrServer prioritario, Debrid, Elementum, AceStream con fallback <1s), Sources Hub (Stremio, Torznab para Jackett/Prowlarr, DHT), Scoring Engine con deduplicación por infoHash y Metadata Hub.
 * **`repository.sonvice` (v1.0.11):** Migración del repositorio a GitHub Pages (`https://sonvice.github.io/repository.sonvice/repo/`) con CDN Fastly global para eludir bloqueos de ISPs y resolver el error 403 Forbidden de jsDelivr.
