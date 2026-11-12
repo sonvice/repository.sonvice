@@ -1,227 +1,148 @@
-<div align="center">
-
-# 📦 Sonvice Kodi Repository
+# Repositorio Oficial Sonvice para Kodi (`repository.sonvice`)
 
 [![Kodi Versions](https://img.shields.io/badge/Kodi-19%20|%2020%20|%2021%20(Matrix%20/%20Nexus%20/%20Omega)-blue.svg)](https://kodi.tv)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Latest Version](https://img.shields.io/badge/Repository-v1.0.10-success.svg)](https://github.com/sonvice/repository.sonvice/releases)
-[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Development-F16061?logo=ko-fi&logoColor=white)](https://ko-fi.com/sonvice)
+[![Latest Version](https://img.shields.io/badge/Repository-v1.0.11-success.svg)](https://github.com/sonvice/repository.sonvice/releases)
 
-**Official Kodi repository for Sonvice addons.**  
-Install, manage, and automatically receive updates for high-performance Kodi addons including **Stremio for Kodi** across all platforms (Android, CoreELEC, Linux, Windows, macOS).
+Repositorio oficial para indexar, distribuir y actualizar de forma automatica los complementos de Sonvice en Kodi, incluyendo **Stremio for Kodi** (`plugin.video.stremio4kodi`), en todas las plataformas compatibles (Android TV, Google TV, Fire TV Stick, CoreELEC, LibreELEC, Linux, Windows y macOS).
 
----
-
-[ 🇬🇧 **English** ](#-english) &nbsp; | &nbsp; [ 🇪🇸 **Español** ](#-español)
+Distribucion optimizada a traves de GitHub Pages con CDN global de baja latencia para garantizar maxima disponibilidad frente a bloqueos de operadoras.
 
 ---
 
-</div>
+## Indice de Contenidos
 
-<a name="-english"></a>
-## 🇬🇧 English
-
-### 🌟 Features & Included Add-ons
-
-* **[Stremio for Kodi (`plugin.video.stremio4kodi`)](https://github.com/sonvice/repository.sonvice):** Seamless Stremio library integration for Kodi, multi-platform torrent streaming (Elementum support on Android/Linux/CoreELEC), AceStream live sports integration, subtitle auto-fetching, and high-performance playback.
-* **Automatic Background Updates:** Once installed, all Sonvice addons receive updates automatically via our low-latency CDN (jsDelivr / GitHub).
-* **Multi-Platform Support:** Compatible with Android (TV/Mobile), CoreELEC / LibreELEC, Linux, Windows, and macOS running Kodi 19+ (Matrix, Nexus, Omega).
+1. [Por Que Instalar el Repositorio Primero (Fundamento Tecnico)](#por-que-instalar-el-repositorio-primero-fundamento-tecnico)
+2. [Politica de Retencion de Versiones (Dual-Version)](#politica-de-retencion-de-versiones-dual-version)
+3. [Guia Didactica de Instalacion Paso a Paso](#guia-didactica-de-instalacion-paso-a-paso)
+4. [Como Forzar la Comprobacion de Actualizaciones (Solucion de Problemas)](#como-forzar-la-comprobacion-de-actualizaciones-solucion-de-problemas)
+5. [Complementos Incluidos](#complementos-incluidos)
+6. [Guia de Compilacion para Desarrolladores (`generator.py`)](#guia-de-compilacion-para-desarrolladores-generatorpy)
 
 ---
 
-### ⚙️ Prerequisites (Enable Unknown Sources)
+## Por Que Instalar el Repositorio Primero (Fundamento Tecnico)
 
-Before installing any third-party repository in Kodi, ensure external sources are allowed:
+El sistema de archivos virtuales de Kodi (VFS) al tratar con rutas remotas (`zip://https://...`) **no se comporta como un navegador o gestor de descargas tradicional**:
 
-1. Launch **Kodi** and open **Settings** (gear icon ⚙️ on the top left).
-2. Go to **System** ➔ **Add-ons**.
-3. Toggle on **Unknown sources**.
-4. Confirm the prompt by selecting **Yes**.
+* **El error comun:** Si un usuario intenta instalar un addon complejo (como Stremio4Kodi, que contiene mas de 70 archivos y librerias internas) seleccionando directamente el archivo `.zip` remoto en la opcion *"Instalar desde un archivo .zip"*, el motor VFS de Kodi abre conexiones HTTP parciales (Range Requests) separadas para cada directorio y fichero. En sistemas como Android TV, Fire TV Stick o routers domesticos, este comportamiento satura el numero de sockets abiertos y Kodi muestra el siguiente error:
+  ```text
+  Fallo al descomprimir el archivo (Failed to unpack archive)
+  ```
+* **La solucion correcta:** El archivo del repositorio (`repository.sonvice-1.0.11.zip`) contiene unicamente dos ficheros ligeros y pesa menos de 30 KB, por lo que se instala de forma instantanea (menos de 0.5 segundos) a traves de la red. Una vez instalado el repositorio en Kodi:
+  1. Kodi descarga el archivo ZIP completo directamente al almacenamiento temporal local (`special://home/addons/packages/`).
+  2. La extraccion se realiza en local a maxima velocidad sin cuellos de botella de red.
+  3. Se activan las **actualizaciones automaticas silenciosas en segundo plano**.
 
 ---
 
-### 📥 Installation Methods
+## Politica de Retencion de Versiones (Dual-Version)
 
-Choose the method that works best for your device:
+A fin de mantener la maxima estabilidad en todo tipo de dispositivos, el repositorio mantiene intencionadamente **unicamente dos versiones simultaneas** de Stremio for Kodi:
 
-#### Method 1: Via Kodi File Manager (Recommended for Smart TVs & TV Boxes)
+1. **Ultima Version Estable (`v4.1.x` - Recomendada):**
+   * Incorpora el orquestador MediaCore (busqueda simultanea en Stremio, Torznab, DHT y AceStream).
+   * Motor de clasificacion inteligente **Spanish Booster** (priorizacion de enlaces en Castellano, Dual y Latino).
+   * Home Moderna unificada y Widgets exportables a cualquier skin de Kodi.
+   * Configuracion remota desde el telefono movil mediante codigo QR y Web UI local.
+2. **Version Antigua / Clasica (`v3.7.33`):**
+   * Version monolitica clasica sin dependencias complejas, conservada permanentemente para dispositivos de muy bajos recursos o usuarios que prefieran la interfaz tradicional de menus directos de Stremio.
 
-This method requires no web browser or external USB drive.
+El script empaquetador del repositorio elimina de forma automatica versiones intermedias para evitar confusiones al usuario.
 
-1. In Kodi, go to **Settings (⚙️)** ➔ **File manager**.
-2. Select **Add source**.
-3. Click on `<None>` and enter the exact URL:
+---
+
+## Guia Didactica de Instalacion Paso a Paso
+
+### Paso 1: Habilitar Origenes Desconocidos
+1. Abre Kodi y haz clic en el icono de **Ajustes** (icono de engranaje en la parte superior izquierda).
+2. Entra en **Sistema** y selecciona en el panel izquierdo la pestana **Add-ons**.
+3. Activa la casilla **Origenes desconocidos**.
+4. Pulsa **Si** en el mensaje de advertencia de seguridad.
+
+### Paso 2: Registrar la URL del Repositorio en el Gestor de Archivos
+1. Regresa al menu de **Ajustes** y entra en **Explorador de archivos**.
+2. Selecciona **Anadir fuente**.
+3. Haz clic sobre el campo `<Ninguno>` y escribe con exactitud:
    ```text
    https://sonvice.github.io/repository.sonvice/
    ```
-4. Enter a name for this media source (e.g., `Sonvice Repo`) and select **OK**.
-5. Return to the Kodi Home Screen and select **Add-ons**.
-6. Click the open box icon (**Add-on Browser**) at the top left.
-7. Select **Install from zip file** (select `Yes` if warned).
-8. Choose **Sonvice Repo** (the source name you created).
-9. Select **`repository.sonvice-1.0.10.zip`**.
-10. Wait a few seconds until you see the **Sonvice Repository Add-on installed** notification.
-
----
-
-#### Method 2: Direct ZIP Download (PC & Mobile)
-
-If you have a browser or access to your device's filesystem:
-
-1. Download the latest repository ZIP file directly:  
-   👉 [**Download repository.sonvice-1.0.10.zip**](https://cdn.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/repository.sonvice/repository.sonvice-1.0.10.zip)  
-   *(Alternative mirror: [GitHub Raw](https://raw.githubusercontent.com/sonvice/repository.sonvice/main/repo/repository.sonvice/repository.sonvice-1.0.10.zip))*
-2. Open Kodi ➔ **Add-ons** ➔ **Add-on Browser** (open box icon).
-3. Select **Install from zip file**.
-4. Navigate to your **Downloads** folder, choose `repository.sonvice-1.0.10.zip`, and click **OK**.
-
----
-
-### 🚀 Installing Add-ons from the Repository
-
-Once the repository is installed, adding plugins is quick and simple:
-
-1. Open Kodi and navigate to **Add-ons**.
-2. Click the **Add-on Browser** icon (open box at top left).
-3. Select **Install from repository**.
-4. Choose **Sonvice Repository**.
-5. Go to **Video add-ons**.
-6. Select **Stremio for Kodi** and click **Install**.
-7. Confirm any required dependencies by clicking **OK**.
-
----
-
-### 🛠️ Developer Guide: Publishing Updates
-
-This repository includes an automated build tool (`generator.py`) to index and package releases:
-
-```bash
-# 1. Update the version number in the addon's addon.xml (e.g., plugin.video.stremio4kodi)
-# 2. Rebuild repository packages and indexes
-python3 generator.py
-
-# 3. Commit and push the generated files to GitHub
-git add -A
-git commit -m "Release vX.Y.Z: update summary"
-git push origin main
-
-# 4. Purge jsDelivr CDN cache for instant global synchronization
-curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml"
-curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml.md5"
-```
-
----
-
-### ☕ Support Development
-
-If you find this repository and its add-ons useful, consider supporting its ongoing development and maintenance:
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/sonvice)
-
----
-
-<a name="-español"></a>
-## 🇪🇸 Español
-
-### 🌟 Características y Complementos Incluidos
-
-* **[Stremio for Kodi (`plugin.video.stremio4kodi`)](https://github.com/sonvice/repository.sonvice):** Integración fluida de tu catálogo de Stremio en Kodi, reproducción torrent multiplataforma (soporte integrado para Elementum en Android/Linux/CoreELEC), compatibilidad con emisiones en vivo por AceStream, descarga automática de subtítulos y máxima estabilidad.
-* **Actualizaciones Automáticas en Segundo Plano:** Una vez instalado el repositorio, todos los complementos de Sonvice se actualizarán de forma transparente a través de nuestra red CDN optimizada (jsDelivr / GitHub).
-* **Compatibilidad Multiplataforma:** Compatible con Android (TV / Móvil), CoreELEC / LibreELEC, Linux, Windows y macOS bajo Kodi 19 o superior (Matrix, Nexus, Omega).
-
----
-
-### ⚙️ Requisito Previo (Activar Orígenes Desconocidos)
-
-Antes de instalar cualquier repositorio externo en Kodi, asegúrate de habilitar esta opción:
-
-1. Abre **Kodi** y pulsa en **Ajustes** (icono del engranaje ⚙️ arriba a la izquierda).
-2. Entra en **Sistema** ➔ **Add-ons** (Complementos).
-3. Activa la opción **Orígenes desconocidos**.
-4. En el cuadro de aviso que aparece, pulsa **Sí**.
-
----
-
-### 📥 Métodos de Instalación
-
-Elige el método que mejor se adapte a tu dispositivo:
-
-#### Método 1: Desde el Gestor de Archivos de Kodi (Recomendado para Smart TV y TV Box)
-
-Este método no requiere navegador web ni pendrive USB:
-
-1. En Kodi, ve a **Ajustes (⚙️)** ➔ **Explorador de archivos** (Gestor de archivos).
-2. Haz clic en **Añadir fuente**.
-3. Pulsa sobre `<Ninguno>` e introduce exactamente esta dirección:
+4. En el campo de nombre inferior, introduce un identificador claro, por ejemplo:
    ```text
-   https://sonvice.github.io/repository.sonvice/
+   Sonvice Repo
    ```
-4. Escribe un nombre para identificar la fuente (por ejemplo: `Sonvice Repo`) y pulsa **OK**.
-5. Regresa al menú principal de Kodi y entra en **Add-ons**.
-6. Pulsa en el icono de la caja abierta (**Explorador de complementos**) arriba a la izquierda.
-7. Selecciona **Instalar desde un archivo .zip** (confirma con `Sí` si te muestra advertencia).
-8. Selecciona **Sonvice Repo** (la fuente que creaste en el paso 4).
-9. Elige el archivo **`repository.sonvice-1.0.10.zip`**.
-10. Espera unos segundos hasta que aparezca la notificación: **Sonvice Repository Complemento instalado**.
+5. Pulsa **OK** para registrar la fuente.
+
+### Paso 3: Instalar el Repositorio desde el archivo ZIP
+1. Regresa al menu principal de Kodi y entra en el apartado **Add-ons**.
+2. Haz clic en el icono de la caja abierta (**Explorador de complementos**) situado en la esquina superior izquierda.
+3. Elige la opcion **Instalar desde un archivo .zip**.
+4. Selecciona la fuente registrada: **Sonvice Repo**.
+5. Selecciona el archivo del repositorio:
+   ```text
+   repository.sonvice-1.0.11.zip
+   ```
+6. Aguarda unos instantes hasta que aparezca la notificacion: **Sonvice Repository Complemento instalado**.
+
+### Paso 4: Instalar Stremio for Kodi
+1. En el mismo menu del Explorador de complementos, selecciona **Instalar desde repositorio**.
+2. Elige **Sonvice Repository**.
+3. Entra en **Complementos para video**.
+4. Selecciona **Stremio for Kodi** y haz clic en el boton **Instalar** (abajo a la derecha).
+5. Confirma las dependencias requeridas pulsando **OK**.
 
 ---
 
-#### Método 2: Descarga Directa del archivo ZIP (PC y Móviles)
+## Como Forzar la Comprobacion de Actualizaciones (Solucion de Problemas)
 
-Si cuentas con navegador web o gestor de descargas en tu dispositivo:
+### Sintoma
+Has instalado el repositorio, pero al entrar a ver las versiones disponibles no aparece la nueva version v4 o Kodi muestra que esta actualizado pero continua ejecutando la version anterior.
 
-1. Descarga directamente el archivo ZIP del repositorio:  
-   👉 [**Descargar repository.sonvice-1.0.10.zip**](https://cdn.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/repository.sonvice/repository.sonvice-1.0.10.zip)  
-   *(Enlace alternativo: [GitHub Raw](https://raw.githubusercontent.com/sonvice/repository.sonvice/main/repo/repository.sonvice/repository.sonvice-1.0.10.zip))*
-2. Abre Kodi ➔ **Add-ons** ➔ **Explorador de complementos** (icono de la caja abierta).
-3. Selecciona **Instalar desde un archivo .zip**.
-4. Navega hasta tu carpeta de **Descargas**, selecciona `repository.sonvice-1.0.10.zip` y pulsa **OK**.
+### Causa
+Kodi almacena en una base de datos local interna (`Addons33.db` en SQLite) el indice de complementos para no saturar los servidores con peticiones constantes. Por defecto, Kodi revisa si hay versiones nuevas en los repositorios una vez cada 24 horas.
 
----
-
-### 🚀 Cómo Instalar Complementos desde el Repositorio
-
-Una vez instalado el repositorio, agregar los addons es muy sencillo:
-
-1. En Kodi, ve a **Add-ons**.
-2. Pulsa en el **Explorador de complementos** (icono de la caja abierta).
-3. Selecciona **Instalar desde repositorio**.
-4. Entra en **Sonvice Repository**.
-5. Selecciona la categoría **Complementos para vídeo**.
-6. Elige **Stremio for Kodi** y pulsa en **Instalar**.
-7. Si te solicita instalar dependencias complementarias, confirma con **OK**.
+### Solucion: Forzar la Actualizacion Inmediata
+1. Entra en **Add-ons** ➔ **Instalar desde repositorio**.
+2. Resalta con el cursor la entrada **Sonvice Repository** (sin hacer clic para entrar en ella).
+3. Abre el **Menu contextual**:
+   * **En mando de TV / Android TV / FireStick:** Manten pulsado el boton central (OK) o presiona el boton con tres lineas horizontales (Menu).
+   * **En ordenador (PC / Mac):** Haz clic con el boton derecho del raton o pulsa la tecla `C` del teclado.
+   * **En dispositivos tactiles (Movil / Tablet):** Manten pulsado sobre el nombre del repositorio.
+4. En el menu emergente que aparece, pulsa en **Comprobar actualizaciones** (Check for updates).
+5. Kodi contactara de inmediato con el servidor CDN, leera el indice `addons.xml` mas reciente y descargara la actualizacion a la version mas reciente.
 
 ---
 
-### 🛠️ Guía para Desarrolladores: Publicación de Actualizaciones
+## Complementos Incluidos
 
-El repositorio incluye un script automatizado (`generator.py`) para empaquetar e indexar nuevas versiones:
+| Identificador | Complemento | Descripcion |
+| :--- | :--- | :--- |
+| `repository.sonvice` | **Sonvice Repository** | Repositorio oficial para recibir correcciones y actualizaciones automaticas. |
+| `plugin.video.stremio4kodi` | **Stremio for Kodi** | Orquestador multimedia con soporte para Stremio, Torznab, Real-Debrid, TorrServer y AceStream. |
+| `service.subtitles.opensubtitles-stremio` | **OpenSubtitles v3** | Servicio de subtitulos automaticos y gratuitos sin registro para el reproductor de Kodi. |
+
+---
+
+## Guia de Compilacion para Desarrolladores (`generator.py`)
+
+El mantenimiento y empaquetado del repositorio esta automatizado mediante el script Python `generator.py`:
 
 ```bash
-# 1. Modifica la versión en el addon.xml del complemento correspondiente (ej. plugin.video.stremio4kodi)
-# 2. Genera los paquetes ZIP y regenera los índices del repositorio
+# 1. Modificar el codigo o subir la version en addon.xml (ej. plugin.video.stremio4kodi/addon.xml)
+# 2. Ejecutar el generador desde la raiz del repositorio:
 python3 generator.py
 
-# 3. Sube los cambios generados al repositorio GitHub
+# 3. Comprobar que los archivos de indice (repo/addons.xml y repo/addons.xml.md5) se han actualizado
+# 4. Confirmar y subir a GitHub:
 git add -A
-git commit -m "Publicar vX.Y.Z: resumen de cambios"
+git commit -m "Publish version X.Y.Z"
 git push origin main
-
-# 4. Purga la caché de jsDelivr para sincronización inmediata a nivel mundial
-curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml"
-curl -s "https://purge.jsdelivr.net/gh/sonvice/repository.sonvice@main/repo/addons.xml.md5"
 ```
 
----
-
-### ☕ Apoyar el Desarrollo
-
-Si este repositorio y sus complementos te resultan útiles, puedes apoyar su mantenimiento y desarrollo continuo invitándome a un café:
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/sonvice)
+El script empaquetador genera automaticamente entradas `ZipInfo` con formato de directorio explicito (`dir/`) para garantizar compatibilidad con el motor de descompresion nativo de Kodi y descarta archivos no necesarios para produccion (`.git`, `__pycache__`, ficheros `.md`, etc.).
 
 ---
 
-## 📄 License / Licencia
+## Licencia
 
-Distributed under the **MIT License**.
+Distribuido bajo licencia **MIT License**. Consulta el archivo `LICENSE` para mas detalles.
