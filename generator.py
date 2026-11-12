@@ -15,13 +15,8 @@ ROOT_EXPORTS = ["repository.sonvice", "plugin.video.stremio4kodi"]
 EXTRA_EXPORTS = [
     {
         "addon_id": "plugin.video.stremio4kodi",
-        "version": "4.0.0",
-        "label": "plugin.video.stremio4kodi-4.0.0.zip (MediaCore v4.0.0)"
-    },
-    {
-        "addon_id": "plugin.video.stremio4kodi",
         "version": "3.7.33",
-        "label": "plugin.video.stremio4kodi-3.7.33.zip (Legacy v3.7.33)"
+        "label": "plugin.video.stremio4kodi-3.7.33.zip"
     }
 ]
 OUTPUT_DIR = os.path.join(REPO_DIR, "repo")
@@ -197,12 +192,12 @@ def generate_repo():
         version = root.attrib["version"]
         zip_rel_path = f"{addon_id}-{version}.zip"
         tag_class = "tag-repo" if "repository" in addon_id else "tag-latest"
-        tag_text = "Repositorio" if "repository" in addon_id else f"v{version} (Última)"
+        tag_text = "Repositorio" if "repository" in addon_id else f"v{version} (Última Versión)"
         html_content += f'        <li><a href="{zip_rel_path}">{addon_id}-{version}.zip</a><span class="tag {tag_class}">{tag_text}</span></li>\n'
 
     for extra in EXTRA_EXPORTS:
         extra_zip = f"{extra['addon_id']}-{extra['version']}.zip"
-        tag_desc = "v4.0.0 (MediaCore)" if extra["version"] == "4.0.0" else f"v{extra['version']} (Legacy)"
+        tag_desc = f"v{extra['version']} (Versión Antigua)"
         html_content += f'        <li><a href="{extra_zip}">{extra_zip}</a><span class="tag tag-legacy">{tag_desc}</span></li>\n'
         
     html_content += """    </ul>
