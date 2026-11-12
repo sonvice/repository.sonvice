@@ -70,13 +70,19 @@ def generate_repo():
             
         print(f"Packaging {addon_id} v{version} into {zip_name}...")
         with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-            for root_dir, _, files in os.walk(addon_path):
-                # Skip git, cache, and build files (checking exact folder names, not substrings)
+            for root_dir, dirs, files in os.walk(addon_path):
+                # Skip git, cache, github and build files
                 parts = os.path.normpath(root_dir).split(os.sep)
-                if any(x in parts for x in [".git", ".antigravitycli", "__pycache__", "repo"]):
+                if any(x in parts for x in [".git", ".github", ".antigravitycli", "__pycache__", "repo"]):
                     continue
-                for file in files:
-                    if file.endswith(".zip") or file.endswith(".pdf"):
+                dirs[:] = sorted([d for d in dirs if d not in [".git", ".github", ".antigravitycli", "__pycache__", "repo"]])
+                
+                rel_dir = os.path.relpath(root_dir, os.path.dirname(addon_path))
+                if rel_dir != ".":
+                    z.write(root_dir, rel_dir)
+
+                for file in sorted(files):
+                    if file.startswith(".") or file.endswith(".zip") or file.endswith(".pdf") or file.endswith(".md"):
                         continue
                     full_path = os.path.join(root_dir, file)
                     rel_path = os.path.relpath(full_path, os.path.dirname(addon_path))
@@ -179,21 +185,20 @@ def generate_repo():
     <p>Añade esta URL en el Gestor de Archivos de Kodi para instalar el repositorio o descargar los complementos:</p>
     <ul>
 """
-    for addon in ADDONS:
-        addon_id = addon["id"]
-        if addon_id not in ROOT_EXPORTS:
+    # Sort exports so repository is displayed first (recommended entry point for users)
+    ordered_exports = ["repository.sonvice", "plugin.video.stremio4kodi"]
+    for export_id in ordered_exports:
+        match = next((a for a in ADDONS if a["id"] == export_id), None)
+        if not match or not os.path.exists(match["path"]):
             continue
-        addon_path = addon["path"]
-        if not os.path.exists(addon_path):
-            continue
-        xml_path = os.path.join(addon_path, "addon.xml")
+        xml_path = os.path.join(match["path"], "addon.xml")
         tree = ET.parse(xml_path)
         root = tree.getroot()
         version = root.attrib["version"]
-        zip_rel_path = f"{addon_id}-{version}.zip"
-        tag_class = "tag-repo" if "repository" in addon_id else "tag-latest"
-        tag_text = "Repositorio" if "repository" in addon_id else f"v{version} (Última Versión)"
-        html_content += f'        <li><a href="{zip_rel_path}">{addon_id}-{version}.zip</a><span class="tag {tag_class}">{tag_text}</span></li>\n'
+        zip_rel_path = f"{export_id}-{version}.zip"
+        tag_class = "tag-repo" if "repository" in export_id else "tag-latest"
+        tag_text = "Repositorio (Recomendado)" if "repository" in export_id else f"v{version} (Última Versión)"
+        html_content += f'        <li><a href="{zip_rel_path}">{export_id}-{version}.zip</a><span class="tag {tag_class}">{tag_text}</span></li>\n'
 
     for extra in EXTRA_EXPORTS:
         extra_zip = f"{extra['addon_id']}-{extra['version']}.zip"
