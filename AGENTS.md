@@ -46,6 +46,30 @@ Cualquier cambio en la versión del repositorio o de los addons se sincronizará
 
 ---
 
-## 4. Estado Actual de Versiones y Motores (v4.0.0)
-* **`plugin.video.stremio4kodi` (v4.0.0):** MediaCore — Nueva arquitectura modular inspirada en HolyArrs ("One UI, One Media Core"). Desacoplamiento en hubs independientes: Playback Hub (TorrServer prioritario, Debrid, Elementum, AceStream con fallback <1s), Sources Hub (Stremio, Torznab para Jackett/Prowlarr, DHT), Scoring Engine con deduplicación por infoHash y Metadata Hub.
+## 4. REGLA ESTRICTA DE INTERFAZ: PROHIBICIÓN ABSOLUTA DE EMOJIS (Iconos Nativos Únicamente)
+
+> [!IMPORTANT]
+> **LOS ADDONS Y COMPLEMENTOS NO DEBEN CONTENER EMOJIS BAJO NINGUNA CIRCUNSTANCIA.**
+> Queda terminantemente prohibido insertar caracteres emoji Unicode (ej: 🏠, ⚡, 🎬, 🔥, 📺, 🍿, 🇪🇸, 🏆, 🔍, ⚙️, etc.) en etiquetas de menús (`label`), diálogos, notificaciones o archivos `settings.xml`.
+> 
+> * **Motivo técnico:** Las fuentes tipográficas estándar de Kodi (Estuary, CoreELEC, Android TV, LibreELEC) no incluyen glifos de emojis en sus tablas TTF y renderizan rectángulos rotos o caracteres basura vacíos (`[]` / ``).
+> * **Solución obligatoria:** Si es necesario aportar riqueza visual a una entrada, se deben utilizar **únicamente iconos nativos de Kodi** mediante el parámetro `icon="DefaultX.png"`.
+>   * Carpetas generales: `DefaultFolder.png`
+>   * Películas: `DefaultMovies.png`
+>   * Series: `DefaultTVShows.png`
+>   * Seguir viendo / En progreso: `DefaultInProgressShows.png`
+>   * Recientes / Novedades: `DefaultRecentlyAddedMovies.png` / `DefaultRecentlyAddedEpisodes.png`
+>   * Plataformas y Estudios: `DefaultStudios.png`
+>   * Ajustes / Programas: `DefaultAddonProgram.png`
+>   * Búsqueda: `DefaultAddonsSearch.png`
+>   * Géneros: `DefaultGenre.png`
+>   * Años: `DefaultYear.png`
+>   * Red / Magnets: `DefaultNetwork.png`
+>   * Favoritos: `DefaultFavourites.png`
+
+---
+
+## 5. Estado Actual de Versiones y Motores (v4.1.0)
+* **`plugin.video.stremio4kodi` (v4.1.0):** MediaCore + Configuración Móvil vía QR + Home Moderna + Widgets Kodi. Supresión definitiva de "Catálogos Stremio" por "Plataformas de Streaming" y "Colecciones y Sagas".
+* **`repository.sonvice` (v1.0.11):** Repositorio en GitHub Pages con soporte multi-versión (`v4.1.0` última, `v4.0.0` MediaCore, `v3.7.33` Legacy).
 * **`repository.sonvice` (v1.0.11):** Migración del repositorio a GitHub Pages (`https://sonvice.github.io/repository.sonvice/repo/`) con CDN Fastly global para eludir bloqueos de ISPs y resolver el error 403 Forbidden de jsDelivr.
