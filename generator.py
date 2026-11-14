@@ -64,6 +64,18 @@ def generate_repo():
         zip_name = f"{addon_id}-{version}.zip"
         zip_path = os.path.join(addon_out_dir, zip_name)
         
+        # Clean up previous v4 zips in addon_out_dir (each v4 release replaces the previous one, keeping v3)
+        for existing_file in os.listdir(addon_out_dir):
+            if existing_file.endswith(".zip"):
+                if any(existing_file == f"{extra['addon_id']}-{extra['version']}.zip" for extra in EXTRA_EXPORTS):
+                    continue
+                if existing_file.startswith(f"{addon_id}-4.") and existing_file != zip_name:
+                    try:
+                        os.remove(os.path.join(addon_out_dir, existing_file))
+                        print(f"Removed previous v4 zip: {existing_file}")
+                    except Exception:
+                        pass
+
         # Remove old zip to avoid packing it inside or other issues
         if os.path.exists(zip_path):
             os.remove(zip_path)

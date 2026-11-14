@@ -72,11 +72,12 @@ Cualquier cambio en la versión del repositorio o de los addons se sincronizará
 ## 5. Política Estricta de Versiones (Dual-Version Retention: v4.x y v3.x)
 
 El repositorio mantiene intencionadamente **únicamente dos versiones** de `plugin.video.stremio4kodi`:
-1. **Última Versión Estable (`v4.1.0+`):** MediaCore + Configuración Móvil vía QR + Home Moderna + Widgets Kodi.
-2. **Versión Antigua / Clásica (`v3.7.33`):** Versión monolítica legacy ligera para usuarios con dispositivos muy antiguos o que prefieran la interfaz tradicional de menús Stremio directos.
+1. **Última Versión Estable de la Rama v4 (`v4.1.8+`):** MediaCore + Configuración Móvil vía QR + Home Moderna + Widgets Kodi + Descargas en Reproducción.
+   * **Regla estricta a partir de la v4:** Cada nueva versión de la rama v4 sustituye y elimina por completo a la anterior en el repositorio (`repo/plugin.video.stremio4kodi/` y raíz). Nunca se deben acumular versiones intermedias (ej. no dejar 4.1.0, 4.1.1... 4.1.7 cuando sale 4.1.8).
+2. **Versión Antigua / Clásica (`v3.7.33`):** Versión monolítica legacy ligera para usuarios con dispositivos muy antiguos o que prefieran la interfaz tradicional de menús Stremio directos. Esta versión **siempre debe permanecer fija en el repositorio** y no debe ser eliminada.
 
 > [!WARNING]
-> **No acumular versiones intermedias (ej. `v4.0.0`):** `generator.py` limpia automáticamente los ZIPs obsoletos de la raíz y del flat index `index.html`. Los usuarios únicamente deben poder elegir entre la versión más reciente y la última versión clásica de la rama v3.
+> **Sustitución Obligatoria en v4:** `generator.py` elimina automáticamente los ZIPs obsoletos de la rama v4 tanto de `repo/plugin.video.stremio4kodi/` como de la raíz del repositorio y del flat index `index.html`. Los usuarios únicamente deben poder elegir entre la versión más reciente de v4 y la última versión clásica de la rama v3 (v3.7.33).
 
 ---
 
